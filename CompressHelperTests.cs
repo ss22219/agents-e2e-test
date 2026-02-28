@@ -7,7 +7,7 @@ public class CompressHelperTests
     [Fact]
     public void GzipCompress_WithValidData_ReturnsCompressedData()
     {
-        var data = Encoding.UTF8.GetBytes("hello world");
+        var data = Encoding.UTF8.GetBytes(new string('a', 1000));
         
         var compressed = CompressHelper.GzipCompress(data);
         
