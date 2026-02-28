@@ -95,4 +95,44 @@ public class QueueHelperTests
         var queue = QueueHelper.CreatePriorityQueue<string, int>();
         Assert.Throws<InvalidOperationException>(() => QueueHelper.Peek(queue));
     }
+
+    [Fact]
+    public void TryPeek_OnNonEmptyQueue_ReturnsTrue()
+    {
+        var queue = QueueHelper.CreatePriorityQueue<string, int>();
+        QueueHelper.Enqueue(queue, "test", 1);
+        Assert.True(QueueHelper.TryPeek(queue, out var element, out var priority));
+        Assert.Equal("test", element);
+        Assert.Equal(1, priority);
+        Assert.Equal(1, queue.Count);
+    }
+
+    [Fact]
+    public void TryPeek_OnEmptyQueue_ReturnsFalse()
+    {
+        var queue = QueueHelper.CreatePriorityQueue<string, int>();
+        Assert.False(QueueHelper.TryPeek(queue, out var element, out var priority));
+    }
+
+    [Fact]
+    public void TryPeek_WithNull_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => QueueHelper.TryPeek<string, int>(null, out _, out _));
+    }
+
+    [Fact]
+    public void Clear_RemovesAllElements()
+    {
+        var queue = QueueHelper.CreatePriorityQueue<string, int>();
+        QueueHelper.Enqueue(queue, "test1", 1);
+        QueueHelper.Enqueue(queue, "test2", 2);
+        QueueHelper.Clear(queue);
+        Assert.Equal(0, queue.Count);
+    }
+
+    [Fact]
+    public void Clear_WithNull_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => QueueHelper.Clear<string, int>(null));
+    }
 }

@@ -31,4 +31,16 @@ public static class QueueHelper
         if (queue == null) throw new ArgumentNullException(nameof(queue));
         return queue.Peek();
     }
+
+    public static bool TryPeek<TElement, TPriority>(PriorityQueue<TElement, TPriority> queue, out TElement element, out TPriority priority)
+    {
+        if (queue == null) throw new ArgumentNullException(nameof(queue));
+        return queue.TryPeek(out element, out priority);
+    }
+
+    public static void Clear<TElement, TPriority>(PriorityQueue<TElement, TPriority> queue)
+    {
+        if (queue == null) throw new ArgumentNullException(nameof(queue));
+        queue.Clear();
+    }
 }
