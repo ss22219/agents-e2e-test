@@ -4,7 +4,7 @@ public static class TemplateEngine
 {
     public static string Render(string template, Dictionary<string, string> variables)
     {
-        if (string.IsNullOrEmpty(template) || variables == null) return template;
+        if (template == null || variables == null) return template;
         
         foreach (var kvp in variables)
         {
