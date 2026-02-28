@@ -19,4 +19,16 @@ public static class QueueHelper
         if (queue == null) throw new ArgumentNullException(nameof(queue));
         return queue.Dequeue();
     }
+
+    public static bool TryDequeue<TElement, TPriority>(PriorityQueue<TElement, TPriority> queue, out TElement element, out TPriority priority)
+    {
+        if (queue == null) throw new ArgumentNullException(nameof(queue));
+        return queue.TryDequeue(out element, out priority);
+    }
+
+    public static TElement Peek<TElement, TPriority>(PriorityQueue<TElement, TPriority> queue)
+    {
+        if (queue == null) throw new ArgumentNullException(nameof(queue));
+        return queue.Peek();
+    }
 }
