@@ -3,6 +3,8 @@ using Xunit;
 
 public class EventBusTests
 {
+    public EventBusTests() => EventBus.Clear();
+
     [Fact]
     public void Publish_WithSubscriber_InvokesHandler()
     {

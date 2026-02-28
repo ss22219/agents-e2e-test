@@ -22,4 +22,6 @@ public static class EventBus
                 ((Action<T>)handler)(eventData);
         }
     }
+
+    public static void Clear() => _handlers.Clear();
 }
